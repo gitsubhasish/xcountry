@@ -7,9 +7,7 @@ const Country = () => {
   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
-    setTimeout(() => {
-      fetchCountries();
-    }, 1000);
+    fetchCountries();
   });
 
   const fetchCountries = async () => {
