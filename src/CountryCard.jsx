@@ -16,12 +16,12 @@ const CountryCard = ({ cnt }) => {
       >
         <img
           class="card-img-top"
-          src={cnt.flags.png}
-          alt={cnt.name.common}
+          src={cnt.flag}
+          alt={cnt.abbr}
           style={{ height: 85 }}
         />
         <div class="card-body">
-          <p class="card-text">{cnt.name.common}</p>
+          <p class="card-text">{cnt.name}</p>
         </div>
       </div>
     </div>

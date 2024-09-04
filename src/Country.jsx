@@ -3,7 +3,7 @@ import axios from "axios";
 import CountryCard from "./CountryCard";
 
 const Country = () => {
-  const [loading, setLoding] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
@@ -12,19 +12,26 @@ const Country = () => {
 
   const fetchCountries = async () => {
     try {
-      const response = await axios.get("https://restcountries.com/v3.1/all");
+      const response = await axios.get(
+        "https://xcountries-backend.azurewebsites.net/all"
+      );
       setCountries(response.data);
+      setLoading(false);
     } catch (error) {
-      console.error("Error fetching data: ", error);
-      throw error;
+      console.error(error);
     }
   };
 
   return (
     <div class="container">
       <div className="row m-5">
-        {countries.length > 0 &&
-          countries.map((cnt) => <CountryCard cnt={cnt} />)}
+        {loading ? (
+          <p>Loading...</p> // Show this when loading
+        ) : countries.length > 0 ? (
+          countries.map((cnt) => <CountryCard key={cnt.code} cnt={cnt} />)
+        ) : (
+          <p>No countries found.</p> // Show this if there are no countries
+        )}
       </div>
     </div>
   );
